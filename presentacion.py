@@ -22,10 +22,10 @@ Pregunta 2. ¿Existe alguna diferencia en la estrategia si en lugar de 3 se tien
 
 st.subheader("Caso con 3 puertas")
 st.write("""
-- Supón que eliges una puerta (probabilidad de acertar = 1/3).
+- Se elige una puerta (probabilidad de acertar = 1/3).
 - El presentador abre una puerta vacía entre las dos restantes.
-- Si decides cambiar, la probabilidad de ganar pasa a ser 2/3.
-Esto se debe a que si tu elección inicial fue incorrecta (2/3 de las veces), cambiar te lleva a la puerta con premio.
+- Si el usuario decide cambiar, la probabilidad de ganar pasa a ser 2/3.
+Esto se debe a que si la elección inicial fue incorrecta (2/3 de las veces), cambiar te lleva a la puerta con premio.
 """)
 
 st.latex(r"\text{P(Ganar sin cambiar)} = \frac{1}{3}")
@@ -36,9 +36,9 @@ st.write("""
 En este caso, hay más puertas, pero el principio es el mismo.
 - P(elegir la puerta ganadora al inicio) = 1/5.
 - El presentador abre 1 puerta sin premio.
-- Si decides cambiar, ahora eliges entre las 3 restantes (excluyendo la elegida y la abierta).
+- Si el usuario decide cambiar, ahora eliges entre las 3 restantes (excluyendo la elegida y la abierta).
 
-Supongamos que tu elección inicial fue incorrecta (probabilidad 4/5). Entre las 3 puertas que quedan, una tiene premio, y eliges una aleatoriamente:
+Supongamos que la elección inicial fue incorrecta (probabilidad 4/5). Entre las 3 puertas que quedan, una tiene premio, y el usuario elige una aleatoriamente:
 """)
 
 st.latex(r"\text{P(Ganar sin cambiar)} = \frac{1}{5} = 0.2")
