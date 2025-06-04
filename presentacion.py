@@ -4,9 +4,7 @@ import altair as alt
 import matplotlib.pyplot as plt
 
 st.set_page_config(layout="wide")
-st.title("🎯 Análisis del Problema de Monty Hall")
-
-st.header("📘 Explicación Teórica del Problema de Monty Hall")
+st.title("Problema de Monty Hall")
 
 st.write("""
 Análisis del Problema de Monty Hall
@@ -20,29 +18,6 @@ Pregunta 1. ¿Debe el concursante mantener su elección original o escoger la ot
 Pregunta 2. ¿Existe alguna diferencia en la estrategia si en lugar de 3 se tienen 5 puertas (1 con premio y 4 sin premio)?
 """)
 
-st.subheader("Caso con 3 puertas")
-st.write("""
-- Se elige una puerta (probabilidad de acertar = 1/3).
-- El presentador abre una puerta vacía entre las dos restantes.
-- Si el usuario decide cambiar, la probabilidad de ganar pasa a ser 2/3.
-Esto se debe a que si la elección inicial fue incorrecta (2/3 de las veces), cambiar te lleva a la puerta con premio.
-""")
-
-st.latex(r"\text{P(Ganar sin cambiar)} = \frac{1}{3}")
-st.latex(r"\text{P(Ganar cambiando)} = \frac{2}{3}")
-
-st.subheader("Caso con 5 puertas")
-st.write("""
-En este caso, hay más puertas, pero el principio es el mismo.
-- P(elegir la puerta ganadora al inicio) = 1/5.
-- El presentador abre 1 puerta sin premio.
-- Si el usuario decide cambiar, ahora eliges entre las 3 restantes (excluyendo la elegida y la abierta).
-
-Supongamos que la elección inicial fue incorrecta (probabilidad 4/5). Entre las 3 puertas que quedan, una tiene premio, y el usuario elige una aleatoriamente:
-""")
-
-st.latex(r"\text{P(Ganar sin cambiar)} = \frac{1}{5} = 0.2")
-st.latex(r"\text{P(Ganar cambiando)} = \frac{4}{5} \cdot \frac{1}{3} = \frac{4}{15} \approx 0.2667")
 
 st.markdown("---")
 st.header("📂 Carga de Datos de Simulaciones")
@@ -271,6 +246,7 @@ print(statistics.mean(victoria_5puertas))
 
 with st.expander("🔢 Código - 5 puertas (cambiando)"):
     st.code("""
+
 puertas2 = []
 final_choise = []
 puerta_ganadora2 = []
@@ -282,20 +258,27 @@ random.seed(2025)
 for i in range(10**5):
     p = random.random()
     puerta_ganadora2.append(puerta_elegida1(p))
-    n = random.random()
+    
+    n = random.random() 
     puertas2.append(puerta_elegida1(n))
-    e = random.random()
-    while (puerta_elegida1(e) == puertas2[i]) or puerta_elegida1(e) == puerta_ganadora2[i]:
-        e = random.random()
-    puerta_abierta2.append(puerta_elegida1(e))
+
+    opciones_para_abrir = list(set(posibilidades) - set([puertas2[i], puerta_ganadora2[i]]))
+    puertas_abiertas = random.sample(opciones_para_abrir, 3)
+    puerta_abierta2.append(puertas_abiertas)  # Guardamos las 3 puertas abiertas
+
     puerta1 = puertas2[i]
-    puerta2 = puerta_abierta2[i]
-    fc = list(set(posibilidades) - set([puerta1, puerta2]))[0]
+    puertas_no_disponibles = set(puertas_abiertas + [puerta1])
+    opciones_finales = list(set(posibilidades) - puertas_no_disponibles)
+
+    fc = opciones_finales[0]
     final_choise.append(fc)
+
     if fc == puerta_ganadora2[i]:
         victoria2_5puertas.append(1)
     else:
         victoria2_5puertas.append(0)
 
 print(statistics.mean(victoria2_5puertas))
+
+
     """, language='python')
