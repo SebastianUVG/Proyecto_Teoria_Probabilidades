@@ -89,7 +89,7 @@ with col2:
         fig, ax = plt.subplots(figsize=(10, 5))
         ax.plot(df["acumulado"], label="Media acumulada")
         ax.axhline(media_final, color='r', linestyle='--', label="Media final")
-        ax.text(iteraciones * 0.95, media_final + 0.01, f"{media_final:.4f}", color='red', fontsize=10, ha='right')
+        ax.text(iteraciones * 0.95, media_final + 0.01, f"{media_final}", color='red', fontsize=10, ha='right')
         ax.set_title(f"Estrategia: {seleccion}")
         ax.set_xlabel("Simulación")
         ax.set_ylabel("Tasa de Éxito")
@@ -136,7 +136,7 @@ with col2:
 
 
 def tasa_victoria(df):
-    return round(df['resultado'].mean(), 4) 
+    return df['resultado'].mean()
 
 resultados = pd.DataFrame({
     "Estrategia": ["3 puertas - Sin cambio", "3 puertas - Cambio", "5 puertas - Sin cambio", "5 puertas - Cambio"],
