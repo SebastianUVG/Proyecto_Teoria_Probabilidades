@@ -1,4 +1,4 @@
-simulacion_id,num_puertas,premio,eleccion_inicial,puertas_abiertas,nueva_eleccion,estrategia,resultado
+simulacion_id,num_puertas,premio,eleccion_inicial,puertas_abiertas,eleccion_final,estrategia,resultado
 0,5,2,3,"[1, 0, 4]",2,Cambiar,1
 1,5,1,1,"[2, 0, 4]",3,Cambiar,0
 2,5,2,0,"[1, 3, 4]",2,Cambiar,1
